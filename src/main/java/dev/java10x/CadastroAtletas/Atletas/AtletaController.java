@@ -1,4 +1,4 @@
-package dev.java10x.CadastroAtletas;
+package dev.java10x.CadastroAtletas.Atletas;
 
 import org.springframework.web.bind.annotation.*;
 

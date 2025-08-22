@@ -1,4 +1,4 @@
-package dev.java10x.CadastroAtletas;
+package dev.java10x.CadastroAtletas.Atletas;
 
 import jakarta.persistence.*;
 
@@ -10,12 +10,17 @@ public class AtletaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
     private String nome;
     private int idade;
-    private int numeroTelefone;
     private char mensalistaDiadista;
 
+    //@ManyToOne um atleta tem apenas um time
+    @ManyToOne
+    @JoinColumn(name= "times_id") // Foreing key ou chave estrangeira
+    private TimesModel times;
+
+    private List<TimesModel>times;
 
 public AtletaModel(){
 
@@ -23,7 +28,6 @@ public AtletaModel(){
     public AtletaModel(String nome, int idade, int numeroTelefone, char mensalistaDiadista) {
         this.nome = nome;
         this.idade = idade;
-        this.numeroTelefone = numeroTelefone;
         this.mensalistaDiadista = mensalistaDiadista;
     }
 
@@ -43,9 +47,6 @@ public AtletaModel(){
         this.idade = idade;
     }
 
-    public int getNumeroTelefone() {
-        return numeroTelefone;
-    }
 
     public void setNumeroTelefone(int numeroTelefone) {
         this.numeroTelefone = numeroTelefone;
